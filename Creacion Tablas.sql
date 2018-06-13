@@ -99,3 +99,5 @@ create table ComisionMovimiento(
 	fecha date not null,
 	monto float not null
 );
+
+use master
