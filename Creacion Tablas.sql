@@ -69,8 +69,8 @@ create table Acciones(
 
 create table Operacion(
 	id int identity primary key,
-	FKClienteComprador int constraint FKOperacion_ClienteC references Cliente(id),
-	FKClienteVendedor int constraint FKOperacion_ClienteV references Cliente(id),
+	FKClienteComprador int constraint FKOperacion_ClienteComprador references Cliente(id),
+	FKClienteVendedor int constraint FKOperacion_ClienteVendedor references Cliente(id),
 	FKTipoOperacion int constraint FKOperacion_TipoOperacion references TipoOperacion(id),
 	FKAgente int constraint FKOperacion_Agente references Agente(id),
 	fecha date not null,
@@ -84,7 +84,7 @@ create table Operacion(
 create table MovimientoAcciones(
 	id int identity primary key,
 	FKAccion int constraint FKMovimientoAcciones_Acciones references Acciones(id),
-	FKClinte int constraint FKMovimientoAcciones_ClienteXEmisor references ClienteXEmisor(id),
+	FKCliente int constraint FKMovimientoAcciones_ClienteXEmisor references ClienteXEmisor(id),
 	FKOperacion int constraint FKMovimientoAcciones_Operacion references Operacion(id),
 	cantidad int not null,
 	precio float not null

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<Emisores DocID="1001" Nombre="Topicshots" QAcciones="4392" PrecioInicial="1100" Variacion="3" Comision="4"/>
+	<Emisores DocID="1002" Nombre="Bubbletube" QAcciones="3435" PrecioInicial="1200" Variacion="4" Comision="2"/>
+	<Emisores DocID="1003" Nombre="Wikibox" QAcciones="2936" PrecioInicial="1300" Variacion="1" Comision="5"/>
+	<Emisores DocID="1004" Nombre="BlogXS" QAcciones="2585" PrecioInicial="1400" Variacion="2" Comision="14"/>
+	<Emisores DocID="1005" Nombre="Gabcube" QAcciones="3398" PrecioInicial="1500" Variacion="4" Comision="1"/>
+	<Emisores DocID="1006" Nombre="Dabshots" QAcciones="4157" PrecioInicial="1600" Variacion="2" Comision="7"/>
+	<Emisores DocID="1007" Nombre="Meezzy" QAcciones="3306" PrecioInicial="1700" Variacion="5" Comision="28"/>
+	<Emisores DocID="1008" Nombre="Gigazoom" QAcciones="1323" PrecioInicial="1800" Variacion="1" Comision="19"/>
+	<Emisores DocID="1009" Nombre="Browsezoom" QAcciones="1124" PrecioInicial="1900" Variacion="3" Comision="3"/>
+	<Emisores DocID="1010" Nombre="Shufflebeat" QAcciones="2088" PrecioInicial="2000" Variacion="5" Comision="16"/>
+	<Emisores DocID="1011" Nombre="Ailane" QAcciones="2531" PrecioInicial="2100" Variacion="1" Comision="23"/>
+	<Emisores DocID="1012" Nombre="Amazon" QAcciones="1018" PrecioInicial="2200" Variacion="1" Comision="28"/>
+	<Emisores DocID="1013" Nombre="Blognation" QAcciones="4923" PrecioInicial="2300" Variacion="3" Comision="28"/>
+	<Emisores DocID="1014" Nombre="Oozz" QAcciones="1041" PrecioInicial="2400" Variacion="3" Comision="6"/>
+	<Emisores DocID="1015" Nombre="Zoonder" QAcciones="1631" PrecioInicial="2500" Variacion="4" Comision="25"/>
+	<Emisores DocID="1016" Nombre="Trudoo" QAcciones="3408" PrecioInicial="2600" Variacion="2" Comision="30"/>
+	<Emisores DocID="1017" Nombre="Youbridge" QAcciones="2516" PrecioInicial="2700" Variacion="1" Comision="24"/>
+	<Emisores DocID="1018" Nombre="Meetz" QAcciones="2783" PrecioInicial="2800" Variacion="5" Comision="6"/>
+	<Emisores DocID="1019" Nombre="Oloo" QAcciones="4264" PrecioInicial="2900" Variacion="1" Comision="10"/>
+	<Emisores DocID="1020" Nombre="Quimm" QAcciones="3174" PrecioInicial="3000" Variacion="1" Comision="4"/>
+</dataset>
