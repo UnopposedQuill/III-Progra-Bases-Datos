@@ -17,54 +17,61 @@ create table DatosControlBase(
 --ahora crearé todas las tablas que no requieran FK's dentro de ellas
 create table Emisor(
 	id int identity primary key,
-	nombre varchar(20)unique not null,
+	nombre nvarchar(20)unique not null,
 	contadorAcciones int not null,
 	precioInicial float not null,
 	variacion float not null,
-	porcetanjeComision float not null
+	porcentajeComision float not null,
+	habilitado bit not null default 1
 );
 
 create table TipoCliente(
 	id int identity primary key,
-	nombre varchar(20)unique not null,
+	nombre nvarchar(20)unique not null,
+	habilitado bit not null default 1
 );
 
 create table Agente(
 	id int identity primary key,
-	nombre varchar(20)unique not null,
-	saldo float not null
+	nombre nvarchar(20)unique not null,
+	saldo float not null,
+	habilitado bit not null default 1
 );
 
 create table TipoOperacion(
 	id int identity primary key,
-	nombre varchar(20)unique not null
+	nombre nvarchar(20)unique not null,
+	habilitado bit not null default 1
 );
 
 create table TipoMovimiento(
 	id int identity primary key,
-	nombre varchar(20)unique not null
+	nombre nvarchar(20)unique not null,
+	habilitado bit not null default 1
 );
-
 
 --ahora empezaré a crear todas las tablas que requieren un FK
 create table Cliente (
 	id int identity primary key,
-	FKTipoClinte int constraint FKCliente_TipoCliente references TipoCliente(id),
-	nombre varchar(20) not null
+	FKTipoCliente int constraint FKCliente_TipoCliente references TipoCliente(id),
+	nombre nvarchar(20) not null,
+	habilitado bit not null default 1
 );
 
 create table ClienteXEmisor(
 	id int identity primary key,
-	FKClinte int constraint FKClienteXEmisor_Cliente references Cliente(id),
+	FKCliente int constraint FKClienteXEmisor_Cliente references Cliente(id),
 	FKEmisor int constraint FKClienteXEmisor_Emisor references Emisor(id),
-	contadorAcciones int not null
+	contadorAcciones int not null check (contadorAcciones >= 0),
+	habilitado bit not null default 1
 );
 
 create table Acciones(
 	id int identity primary key,
 	FKEmisor int constraint FKAcciones_Emisor references Emisor(id),
-	precioActual int not null,
-	codigo int unique not null
+	--precioActual int not null,--se eliminó por redundancia
+	codigo int unique not null,
+	habilitado bit not null default 1
 );
 
 create table Operacion(
@@ -77,19 +84,20 @@ create table Operacion(
 	precio float not null,
 	cantidadAcciones int not null,
 	total float not null,
-	porcentajeComision float not null
+	porcentajeComision float not null,
+	habilitado bit not null default 1
 );
-
 
 create table MovimientoAcciones(
 	id int identity primary key,
 	FKAccion int constraint FKMovimientoAcciones_Acciones references Acciones(id),
-	FKCliente int constraint FKMovimientoAcciones_ClienteXEmisor references ClienteXEmisor(id),
+	FKCliente int constraint FKMovimientoAcciones_Cliente references Cliente(id),
 	FKOperacion int constraint FKMovimientoAcciones_Operacion references Operacion(id),
 	cantidad int not null,
-	precio float not null
+	precio float not null,
+	isCompra bit not null,
+	habilitado bit not null default 1
 );
-
 
 create table ComisionMovimiento(
 	id int identity primary key,
@@ -97,7 +105,8 @@ create table ComisionMovimiento(
 	FKTipoMovimiento int constraint FKComisionMovimiento_TipoMovimiento references TipoMovimiento(id),
 	FKAgente int constraint FKComisionMovimiento_Agente references Agente(id),
 	fecha date not null,
-	monto float not null
+	monto float not null,
+	habilitado bit not null default 1
 );
 
 use master
