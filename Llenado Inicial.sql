@@ -68,15 +68,28 @@ begin
 				a.value('@ClienteCompra[1]','int'),
 				a.value('@ClienteVende[1]','int'),
 				a.value('@TipoOperacion[1]','int')
+				/*Porcentaje de comisión*/
+				/*Precio*/
 			from @datosXMLAgentes.nodes('/dataset') as x(Rec)
 			cross apply @datosXMLAgentes.nodes('/dataset/Operaciones') as i(a)
 			inner join Agente A on A.nombre = a.value('@Agente[1]','nvarchar(20)');
 
-		--ahora tengo que colocar todos los datos relevantes de las operaciones, primero coloco las compras, y luego coloco las ventas
-		insert into MovimientoAcciones(cantidad, FKAccion, FKCliente, FKOperacion, precio, isCompra)
-			select O.cantidadAcciones, /*A implementar*/1, O.FKClienteComprador, O.precio, 1/*Estoy con las compras*/)
-			from Operacion O 
+		--ahora tengo que colocar todos los datos relevantes de las operaciones, primero coloco las comisiones para los agentes
 
+
+		--ahora coloco los movimientoacciones de tipo venta
+		insert into MovimientoAcciones(cantidad, FKAccion, FKCliente, FKOperacion, precio, isCompra)
+			select O.cantidadAcciones, /*A implementar*/1, O.FKClienteComprador, O.precio, 0/*Estoy con las ventas*/
+			from Operacion O 
+			--tengo que recoger las acciones del vendedor
+			inner join Cliente C on C.id = O.FKClienteVendedor
+
+		--ahora las de tipo compra
+		insert into MovimientoAcciones(cantidad, FKAccion, FKCliente, FKOperacion, precio, isCompra)
+			select O.cantidadAcciones, /*A implementar*/1, O.FKClienteComprador, O.precio, 1/*Estoy con las compras*/
+			from Operacion O 
+			--tengo que recoger las acciones del vendedor
+			inner join Cliente C on C.id
 
 
 		--ahora coloco el bit de control para indicar que todo en la simulación está cargado correctamente

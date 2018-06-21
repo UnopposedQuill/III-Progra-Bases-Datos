@@ -53,32 +53,39 @@ create table TipoMovimiento(
 --ahora empezaré a crear todas las tablas que requieren un FK
 create table Cliente (
 	id int identity primary key,
-	FKTipoCliente int constraint FKCliente_TipoCliente references TipoCliente(id),
+	FKTipoCliente int constraint FKCliente_TipoCliente references TipoCliente(id) not null,
 	nombre nvarchar(20) not null,
 	habilitado bit not null default 1
 );
 
 create table ClienteXEmisor(
 	id int identity primary key,
-	FKCliente int constraint FKClienteXEmisor_Cliente references Cliente(id),
-	FKEmisor int constraint FKClienteXEmisor_Emisor references Emisor(id),
+	FKCliente int constraint FKClienteXEmisor_Cliente references Cliente(id) not null,
+	FKEmisor int constraint FKClienteXEmisor_Emisor references Emisor(id) not null,
 	contadorAcciones int not null check (contadorAcciones >= 0),
 	habilitado bit not null default 1
 );
 
 create table Acciones(
 	id int identity primary key,
-	FKEmisor int constraint FKAcciones_Emisor references Emisor(id),
+	FKEmisor int constraint FKAcciones_Emisor references Emisor(id) not null,
 	--precioActual int not null,--se eliminó por redundancia
 	codigo int unique not null,
 	habilitado bit not null default 1
 );
 
+create table ClienteXAcciones(
+	id int identity primary key,
+	FKCliente int constraint FKClienteXAcciones_Cliente references Cliente(id) not null,
+	FKAccion int constraint FKClienteXAcciones_Accion references Acciones(id) not null,
+	contadorAcciones int not null
+);
+
 create table Operacion(
 	id int identity primary key,
-	FKClienteComprador int constraint FKOperacion_ClienteComprador references Cliente(id),
-	FKClienteVendedor int constraint FKOperacion_ClienteVendedor references Cliente(id),
-	FKTipoOperacion int constraint FKOperacion_TipoOperacion references TipoOperacion(id),
+	FKClienteComprador int constraint FKOperacion_ClienteComprador references Cliente(id) not null,
+	FKClienteVendedor int constraint FKOperacion_ClienteVendedor references Cliente(id) not null,
+	FKTipoOperacion int constraint FKOperacion_TipoOperacion references TipoOperacion(id) not null,
 	FKAgente int constraint FKOperacion_Agente references Agente(id),
 	fecha date not null,
 	precio float not null,
